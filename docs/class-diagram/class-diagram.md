@@ -87,12 +87,12 @@ classDiagram
     Account <|-- Coordinator
 
     Reporter "1" --> "0..*" Issue : reports
-    Location "0..1" --> "0..*" Issue : located at
+    Issue "0..*" --> "0..1" Location : located at
     Issue "1" *-- "0..*" Attachment
     Issue "1" *-- "0..*" Comment
     Issue "1" *-- "0..*" StatusLog
     Account "1" --> "0..*" Comment : writes
-    Account "1" --> "0..*" StatusLog : changes
+    Account "1" --> "0..*" StatusLog : performed
     Issue ..> IssueCategory
     Issue ..> IssueStatus
     Issue ..> Priority
