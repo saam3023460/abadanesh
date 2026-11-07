@@ -1,80 +1,115 @@
+# Abadanesh: Class Diagram (Release 1)
 
-# Class Diagram — Problem Reporting System
+Scope: report and track. Assignment to service units and technicians belongs to Release 2.
 
-## Overview
+## 1. Glossary
 
-An initial domain model for a system that allows members
-of a target community to report and track problems.
+| Term | Meaning |
+|---|---|
+| **Account** | Abstract base for anyone who logs in. |
+| **Reporter** | A student or staff member who reports issues and tracks them. Signs in with phone number only (one-time code). |
+| **Coordinator** | Reviews reports, updates their status, and follows up until resolution. Signs in with email and password. |
 
-The target community is not finalized yet.
-
-## Class Diagram
+## 2. Class Diagram
 
 ```mermaid
 classDiagram
-    class User {
-        +UUID id
-        +String fullName
-        +String phoneNumber
-        +String email
-        +DateTime createdAt
+    class Account {
+        <<abstract>>
+        +int id
     }
-
-    class Problem {
-        +UUID id
-        +String title
-        +String description
-        +String location
-        +DateTime reportedAt
-        +ProblemStatus status
-        +ProblemPriority priority
+    class Reporter {
+        +string phoneNumber
     }
-
-    class SupportAgent {
-        +UUID id
-        +String fullName
-        +String email
+    class Coordinator {
+        +string name
+        +string email
+        +string passwordHash
     }
-
-    class FieldAgent {
-        +UUID id
-        +String fullName
-        +String employeeCode
-        +String specialization
+    class Location {
+        +int id
+        +string name
+        +string building
     }
-
-    class ProblemStatus {
+    class Issue {
+        +int id
+        +string title
+        +string description
+        +IssueCategory category
+        +string freeTextLocation
+        +IssueStatus status
+        +Priority priority
+        +datetime createdAt
+    }
+    class Attachment {
+        +int id
+        +string filePath
+        +datetime uploadedAt
+    }
+    class Comment {
+        +int id
+        +string text
+        +datetime createdAt
+    }
+    class StatusLog {
+        +int id
+        +IssueStatus oldStatus
+        +IssueStatus newStatus
+        +datetime changedAt
+    }
+    class IssueCategory {
         <<enumeration>>
-        SUBMITTED
-        UNDER_REVIEW
-        ASSIGNED
-        IN_PROGRESS
-        RESOLVED
-        REJECTED
-        CLOSED
+        Infrastructure
+        Electrical
+        TechnicalEquipment
+        Sanitation
+        CampusFacilities
+        Other
     }
-
-    class ProblemPriority {
+    class IssueStatus {
         <<enumeration>>
-        LOW
-        MEDIUM
-        HIGH
-        CRITICAL
+        New
+        Accepted
+        Rejected
+        InProgress
+        Resolved
+        AwaitingConfirmation
+        Closed
+    }
+    class Priority {
+        <<enumeration>>
+        Low
+        Medium
+        High
     }
 
-    User "1" --> "0..*" Problem : reports
-    SupportAgent "1" --> "0..*" Problem : reviews
-    FieldAgent "0..1" --> "0..*" Problem : handles
-    Problem --> ProblemStatus : has
-    Problem --> ProblemPriority : has
+    Account <|-- Reporter
+    Account <|-- Coordinator
+
+    Reporter "1" --> "0..*" Issue : reports
+    Issue "0..*" --> "0..1" Location : located at
+    Issue "1" *-- "0..*" Attachment
+    Issue "1" *-- "0..*" Comment
+    Issue "1" *-- "0..*" StatusLog
+    Account "1" --> "0..*" Comment : writes
+    Account "1" --> "0..*" StatusLog : performed
+    Issue ..> IssueCategory
+    Issue ..> IssueStatus
+    Issue ..> Priority
 ```
 
-## Open Questions
+## 3. Design Decisions
 
-- Who is the target user community?
-- Can a problem have multiple field agents?
-- Can a problem be reassigned?
-- Are problem categories required?
-- Is location mandatory for every problem?
-- Can users comment on or reopen a problem?
-- Should support agents and field agents share a common base class?
+- **Easy sign-in for reporters:** only a phone number is stored; login uses a one-time code, so there is no password.
+- **Stronger credentials for staff:** the Coordinator has a name, email, and password.
+- **Separate role classes:** Reporter and Coordinator are distinct classes because their responsibilities differ.
+- **Location:** a Reporter may give free text or choose a structured `Location`. The Coordinator must set a structured `Location` when processing an issue.
+- **Category:** a fixed enumeration, since it has no attributes of its own.
+- **History:** every status change is recorded in `StatusLog`.
+- **Attachments:** Reporters can attach photos to an issue.
+
+## 4. Out of Scope for Release 1
+
+- ServiceUnit, Technician, and assigning issues (Release 2)
+- Suggestions (Release 3)
+- Linking duplicate reports (future)
