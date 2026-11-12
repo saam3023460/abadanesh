@@ -51,12 +51,7 @@ classDiagram
         +string text
         +datetime createdAt
     }
-    class StatusLog {
-        +int id
-        +IssueStatus oldStatus
-        +IssueStatus newStatus
-        +datetime changedAt
-    }
+
     class IssueCategory {
         <<enumeration>>
         Infrastructure
@@ -90,9 +85,7 @@ classDiagram
     Issue "0..*" --> "0..1" Location : located at
     Issue "1" *-- "0..*" Attachment
     Issue "1" *-- "0..*" Comment
-    Issue "1" *-- "0..*" StatusLog
     Account "1" --> "0..*" Comment : writes
-    Account "1" --> "0..*" StatusLog : performed
     Issue ..> IssueCategory
     Issue ..> IssueStatus
     Issue ..> Priority
@@ -105,7 +98,6 @@ classDiagram
 - **Separate role classes:** Reporter and Coordinator are distinct classes because their responsibilities differ.
 - **Location:** a Reporter may give free text or choose a structured `Location`. The Coordinator must set a structured `Location` when processing an issue.
 - **Category:** a fixed enumeration, since it has no attributes of its own.
-- **History:** every status change is recorded in `StatusLog`.
 - **Attachments:** Reporters can attach photos to an issue.
 
 ## 4. Out of Scope for Release 1
