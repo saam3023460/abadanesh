@@ -14,7 +14,7 @@ Abadanesh is a university issue management platform designed to facilitate the r
 
 The system provides an organized channel for reporting problems related to university facilities, infrastructure, electrical systems, technical equipment, sanitation, and other campus services.
 
-It facilitates problem resolution by allowing coordinators to review reports, assign issues to responsible technicians or departments, monitor progress, and follow up until resolution.
+It facilitates problem resolution by allowing coordinators to review reports, assign issues to responsible technicians or service units, monitor progress, and follow up until resolution.
 
 The system also allows users to submit suggestions for improving the university environment.
 
@@ -24,7 +24,7 @@ The main goals of Abadanesh are:
 - Facilitate communication between university members and responsible personnel.
 - Increase transparency regarding the progress of reported issues.
 - Encourage participation in improving the university environment.
-- Provide an organized system for managing users, departments, and administrative responsibilities.
+- Provide an organized system for managing users, service units, and administrative responsibilities.
 
 ### 1.2 Definitions
 
@@ -34,10 +34,10 @@ The main goals of Abadanesh are:
 | Issue Status | The current state of an issue within the system's management and resolution process. |
 | Report | A submission made through the system describing an issue, including relevant information such as its description, category, and location. A report may also contain a suggestion for improvement. |
 | Reporter | A student or university staff member who submits a report. |
-| Coordinator | A person responsible for reviewing reports, coordinating the handling of issues, and assigning them to appropriate technicians or departments. |
+| Coordinator | A person responsible for reviewing reports, coordinating the handling of issues, and assigning them to appropriate technicians or service units. |
 | Technician | A person responsible for handling issues assigned to them and updating their progress and resolution status. |
-| System Administrator | A person responsible for managing user accounts, assigning roles, managing departments, and maintaining administrative configurations required for the operation of the system. |
-| Department | An organizational unit within the university responsible for handling particular types of issues or services. |
+| System Administrator | A person responsible for managing user accounts, assigning roles, managing service units, and maintaining administrative configurations required for the operation of the system. |
+| Service Unit | An organizational unit within the university responsible for handling particular types of issues or services. |
 
 ---
 
@@ -58,7 +58,7 @@ The system includes the following features:
 
 - Coordinators can review submitted reports.
 - Coordinators can categorize and prioritize issues.
-- Coordinators can assign issues to responsible technicians or departments.
+- Coordinators can assign issues to responsible technicians or service units.
 - Technicians can view issues assigned to them.
 - Technicians can update the status of assigned issues.
 - Technicians can provide progress updates.
@@ -86,8 +86,8 @@ The system includes the following features:
 - System administrators can view and manage user accounts.
 - System administrators can assign roles to users.
 - System administrators can activate and deactivate user accounts.
-- System administrators can create, modify, and remove departments.
-- System administrators can associate technicians and coordinators with departments.
+- System administrators can create, modify, and remove service units.
+- System administrators can associate technicians and coordinators with service units.
 - System administrators can maintain administrative configurations required by the system.
 
 ### 2.2 Out-of-Scope Features
@@ -95,7 +95,7 @@ The system includes the following features:
 The following features are not included in the current scope:
 
 - **Dormitory-related problems:** Reporting and management of issues concerning university dormitories.
-- **Physical maintenance and repairs:** The system coordinates and tracks maintenance activities but does not perform physical repairs.
+- **Physical maintenance and repairs:** The system coordinates and tracks maintenance activities but does not perform physical repairs itself(i.e technicians are not an asset of the system).
 - **Financial management:** Managing budgets, payments, purchases, and financial transactions.
 - **Emergency response services:** Handling emergencies that require immediate intervention from emergency services.
 - **General university administration:** Course registration, grading, attendance, enrollment, and similar academic administrative activities.
@@ -133,7 +133,7 @@ Coordinators are responsible for organizing and overseeing the issue-resolution 
 - Review submitted reports.
 - Categorize reported issues.
 - Assign priorities to issues.
-- Assign issues to responsible technicians or departments.
+- Assign issues to responsible technicians or service units.
 - Monitor issue statuses and progress.
 - Oversee the resolution process.
 
@@ -141,7 +141,7 @@ Coordinators are responsible for organizing and overseeing the issue-resolution 
 
 Technicians are responsible for handling issues assigned to them. They can:
 
-- View issues assigned to them or their departments, according to their permissions.
+- View issues assigned to them or their service units, according to their permissions.
 - Access relevant issue information.
 - Update issue statuses.
 - Provide progress updates.
@@ -154,8 +154,8 @@ System administrators are responsible for maintaining the administrative aspects
 - View and manage user accounts.
 - Assign roles to users.
 - Activate and deactivate user accounts.
-- Create, modify, and remove departments.
-- Associate technicians and coordinators with departments.
+- Create, modify, and remove service units.
+- Associate technicians and coordinators with service units.
 - Maintain administrative configurations.
 - Oversee administrative access and permissions.
 
@@ -181,7 +181,7 @@ System administrators are responsible for maintaining the administrative aspects
 | FR-07 | The system shall allow coordinators to view submitted reports. |
 | FR-08 | The system shall allow coordinators to categorize reported issues. |
 | FR-09 | The system shall allow coordinators to assign priorities to issues. |
-| FR-10 | The system shall allow coordinators to assign issues to responsible technicians or departments. |
+| FR-10 | The system shall allow coordinators to assign issues to responsible technicians or service units. |
 | FR-11 | The system shall allow technicians to view issues assigned to them. |
 | FR-12 | The system shall allow authorized personnel to update the status of assigned issues. |
 | FR-13 | The system shall allow technicians to provide progress updates for assigned issues. |
@@ -202,7 +202,7 @@ System administrators are responsible for maintaining the administrative aspects
 |---|---|
 | FR-19 | The system shall support different user roles with different permissions. |
 | FR-20 | The system shall restrict administrative and coordination operations to authorized users. |
-| FR-21 | The system shall restrict technicians to managing issues assigned to them or their departments, according to their permissions. |
+| FR-21 | The system shall restrict technicians to managing issues assigned to them or their service units, according to their permissions. |
 
 ### 4.5 Notifications
 
@@ -218,8 +218,8 @@ System administrators are responsible for maintaining the administrative aspects
 | FR-24 | The system shall allow authorized system administrators to view and manage user accounts. |
 | FR-25 | The system shall allow system administrators to assign roles to users. |
 | FR-26 | The system shall allow system administrators to activate and deactivate user accounts. |
-| FR-27 | The system shall allow system administrators to create, modify, and remove departments. |
-| FR-28 | The system shall allow system administrators to associate technicians and coordinators with departments. |
+| FR-27 | The system shall allow system administrators to create, modify, and remove service units. |
+| FR-28 | The system shall allow system administrators to associate technicians and coordinators with service units. |
 | FR-29 | The system shall restrict system-wide administrative operations to authorized system administrators. |
 
 ---
@@ -277,9 +277,9 @@ System administrators are responsible for maintaining the administrative aspects
 
 3. **Role-Based Permissions:** Coordination, issue management, and administrative operations shall be restricted to authorized personnel according to their assigned roles.
 
-4. **Department Dependency:** Issue resolution depends on the availability and actions of responsible technicians and departments. The system coordinates and tracks the process but cannot guarantee that reported issues will be resolved.
+4. **Service Unit Dependency:** Issue resolution depends on the availability and actions of responsible technicians and service units. The system coordinates and tracks the process but cannot guarantee that reported issues will be resolved.
 
-5. **Administrative Access:** Only designated system administrators may perform system-wide administrative operations, such as managing user roles and departments.
+5. **Administrative Access:** Only designated system administrators may perform system-wide administrative operations, such as managing user roles and service units.
 
 6. **Technical Constraints:** The system must comply with the technical limitations and resources available to the development team. Specific technologies and deployment requirements are TBD.
 
@@ -312,15 +312,15 @@ The following questions require further discussion and clarification:
 ### 7.3 Issue Management and Assignment
 
 13. Which notification channels should the system support (e.g., email, SMS, or in-app notifications)?
-14. Who is responsible for creating and managing departments and their associated technicians?
-15. Should coordinators and technicians be associated with specific departments?
+14. Who is responsible for creating and managing service units and their associated technicians?
+15. Should coordinators and technicians be associated with specific service units?
 16. Can an issue be assigned to multiple technicians simultaneously?
 17. Do suggestions follow the same workflow as ordinary issue reports, or do they require additional handling?
 
 ### 7.4 System Administration
 
 18. Should administrative operations be recorded in an audit log? If so, which operations should be recorded?
-19. Should departments be allowed to be permanently deleted, or should they only be deactivated?
+19. Should service units be allowed to be permanently deleted, or should they only be deactivated?
 20. What administrative configurations should be configurable through the system?
 21. Should system administrators be able to manage all user roles, or should some roles require additional authorization?
 

@@ -14,6 +14,7 @@ Abadanesh focuses on the entire problem-solving process, enabling coordinators t
 - Saam Shahrouzi
 - Zahra Yaghoubi
 - Sajad Davoudabadi
+- Kosar Rostamian
 
 ## Analysis and Design Documentation
 
@@ -26,25 +27,6 @@ The project's analysis and design documents are located in the `docs/` directory
 | `docs/class-diagram/class-diagram.md` | Class Diagram |
 | `docs/us/` | User Stories and their acceptance criteria, organized by actor. |
 
-## Repository Structure
-
-```text
-.
-├── docs/
-│   ├── srs/
-│   │   └── srs.md
-│   ├── activity-diagram/
-│   │   └── activity-diagram.md
-│   ├── class-diagram/
-│   │   └── class-diagram.md
-│   └── us/
-│       ├── admin/
-│       ├── system/
-│       ├── technician/
-│       ├── coordinator/
-│       └── reporter/
-└── README.md
-```
 
 ### User Stories Organization
 
