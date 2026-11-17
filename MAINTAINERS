@@ -1,0 +1,16 @@
+this file lists and separates the files/directories owned and maintained by each member of abadanesh, with the sole purpose of avoiding merge conflicts. if a file is not mentioned here, then it is considered "free to edit" by all members. do your best to not touch files that are not assigned to you:) 
+
+
+saam:
+	/docs/srs/
+	/docs/us/reporter/
+
+
+zahra:
+	/docs/class-diagram/
+
+sajad:
+	/docs/activity-diagram/
+
+kosar:
+	/docs/us/coordinator
