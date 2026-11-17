@@ -239,4 +239,4 @@ The status history screen is not part of Release 1, so there is no screen for it
 - "Every user is a Reporter": under discussion. If staff can also report, add "New Report" to the staff menu.
 - Status names must match between the user stories and the class diagram (Zahra will comment in the user stories section).
 - Admin screens: to be added after Sajad's decision (under discussion).
-- US-16 (status history) is marked R1 in the story list, but the history screen is omitted here. Confirm with the team whether US-16 moves out of R1, and update the related Gherkin steps (US-14, US-15, US-16).
+-- US-16 (status history) moves out of Release 1 (confirmed by the team), so this document has no history screen.
